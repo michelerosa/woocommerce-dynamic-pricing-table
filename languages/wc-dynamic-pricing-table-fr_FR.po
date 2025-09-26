@@ -1,0 +1,81 @@
+# French translation for WooCommerce Dynamic Pricing Table
+# Copyright (C) 2024 Lucas Stark
+# This file is distributed under the same license as the WooCommerce Dynamic Pricing Table package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Dynamic Pricing Table 2.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/lucasstark/woocommerce-dynamic-pricing-table\n"
+"POT-Creation-Date: 2024-01-01 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-01 00:00:00+00:00\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: WP-CLI\n"
+
+#: includes/class-blocksy-integration.php:40
+msgid "Dynamic Pricing Table"
+msgstr "Tableau de Prix Dynamiques"
+
+#: includes/class-blocksy-integration.php:44
+msgid "Enable"
+msgstr "Activer"
+
+#: includes/class-blocksy-integration.php:50
+msgid "Visibility"
+msgstr "Visibilité"
+
+#: includes/class-pricing-table.php:234
+msgid "Cartons"
+msgstr "Cartons"
+
+#: includes/class-pricing-table.php:235
+msgid "Discount"
+msgstr "Remise"
+
+#: includes/class-pricing-table.php:236
+msgid "Price per Pizza"
+msgstr "Prix par Pizza"
+
+#: includes/class-pricing-table.php:247
+msgid "For larger quantities and/or special requests %scontact us%s for a custom quote"
+msgstr "Pour des quantités plus importantes et/ou des demandes spéciales %scontactez-nous%s pour un devis personnalisé"
+
+#: includes/class-pricing-table.php:345
+msgid "%s carton"
+msgid_plural "%s cartons"
+msgstr[0] "%s carton"
+msgstr[1] "%s cartons"
+
+#: includes/class-pricing-table.php:346
+msgid "%s pizza"
+msgid_plural "%s pizzas"
+msgstr[0] "%s pizza"
+msgstr[1] "%s pizzas"
+
+#: includes/class-pricing-table.php:349
+msgid "%s+ cartons"
+msgstr "%s+ cartons"
+
+#: includes/class-pricing-table.php:350
+msgid "%s+ pizzas"
+msgstr "%s+ pizzas"
+
+#: includes/class-pricing-table.php:353
+msgid "From %1$s to %2$s"
+msgstr "De %1$s à %2$s"
+
+#: includes/class-pricing-table.php:354
+msgid "from %1$s to %2$s pizzas"
+msgstr "de %1$s à %2$s pizzas"
+
+#: woocommerce-dynamic-pricing-table.php:200
+msgid "The WooCommerce Dynamic Pricing Table extension requires that you have the WooCommerce Dynamic Pricing plugin installed and activated."
+msgstr "L'extension WooCommerce Dynamic Pricing Table nécessite que le plugin WooCommerce Dynamic Pricing soit installé et activé."
+
+#: woocommerce-dynamic-pricing-table.php:202
+msgid "Get WooCommerce Dynamic Pricing now"
+msgstr "Obtenez WooCommerce Dynamic Pricing maintenant"
