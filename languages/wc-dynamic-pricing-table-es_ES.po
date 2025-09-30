@@ -36,9 +36,9 @@ msgstr "Cartones"
 msgid "Discount"
 msgstr "Descuento"
 
-#: includes/class-pricing-table.php:236
-msgid "Price per Pizza"
-msgstr "Precio por Pizza"
+#: includes/class-pricing-table.php:220
+msgid "€/pizza"
+msgstr "€/pizza"
 
 #: includes/class-pricing-table.php:247
 msgid "For larger quantities and/or special requests %scontact us%s for a custom quote"

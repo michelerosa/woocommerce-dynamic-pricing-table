@@ -215,27 +215,14 @@ class WC_Dynamic_Pricing_Table_Renderer {
 			<table>
 				<thead>
 					<tr>
-						<th><?php esc_html_e( 'Cartons', 'wc-dynamic-pricing-table' ); ?></th>
-						<th><?php esc_html_e( 'Discount', 'wc-dynamic-pricing-table' ); ?></th>
-						<th><?php esc_html_e( 'Price per Pizza', 'wc-dynamic-pricing-table' ); ?></th>
+						<th class="quantity-col"><?php esc_html_e( 'Cartons', 'wc-dynamic-pricing-table' ); ?></th>
+						<th class="discount-col"><?php esc_html_e( 'Discount', 'wc-dynamic-pricing-table' ); ?></th>
+						<th class="price-col"><?php esc_html_e( '€/pizza', 'wc-dynamic-pricing-table' ); ?></th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php $this->render_table_rows( $pricing_rule_set['rules'], $product, $pieces_per_carton ); ?>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="3">
-							<?php
-							printf(
-								esc_html__( 'For larger quantities and/or special requests %scontact us%s for a custom quote', 'wc-dynamic-pricing-table' ),
-								'<a href="' . esc_url( get_permalink( 9531 ) ) . '">',
-								'</a>'
-							);
-							?>
-						</td>
-					</tr>
-				</tfoot>
 			</table>
 		</div>
 		<?php
@@ -302,13 +289,13 @@ class WC_Dynamic_Pricing_Table_Renderer {
 			data-to="<?php echo esc_attr( $to ?: '' ); ?>"
 			data-type="<?php echo esc_attr( $rule['type'] ); ?>"
 			data-amount="<?php echo esc_attr( $rule['amount'] ); ?>">
-			<td>
+			<td class="quantity-col">
 				<strong><?php echo esc_html( $quantity_text['cartons'] ); ?></strong>
 				<br>
 				<small><?php echo esc_html( $quantity_text['pizzas'] ); ?></small>
 			</td>
-			<td><?php echo esc_html( $discount_text ); ?></td>
-			<td><?php echo $price_per_pizza; ?></td>
+			<td class="discount-col"><?php echo esc_html( $discount_text ); ?></td>
+			<td class="price-col"><?php echo $price_per_pizza; ?></td>
 		</tr>
 		<?php
 	}

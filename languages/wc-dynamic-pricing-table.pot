@@ -25,47 +25,43 @@ msgstr ""
 msgid "Visibility"
 msgstr ""
 
-#: includes/class-pricing-table.php:234
+#: includes/class-pricing-table.php:218
 msgid "Cartons"
 msgstr ""
 
-#: includes/class-pricing-table.php:235
+#: includes/class-pricing-table.php:219
 msgid "Discount"
 msgstr ""
 
-#: includes/class-pricing-table.php:236
-msgid "Price per Pizza"
+#: includes/class-pricing-table.php:220
+msgid "€/pizza"
 msgstr ""
 
-#: includes/class-pricing-table.php:247
-msgid "For larger quantities and/or special requests %scontact us%s for a custom quote"
-msgstr ""
-
-#: includes/class-pricing-table.php:345
+#: includes/class-pricing-table.php:318
 msgid "%s carton"
 msgid_plural "%s cartons"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-pricing-table.php:346
+#: includes/class-pricing-table.php:319
 msgid "%s pizza"
 msgid_plural "%s pizzas"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-pricing-table.php:349
+#: includes/class-pricing-table.php:322
 msgid "%s+ cartons"
 msgstr ""
 
-#: includes/class-pricing-table.php:350
+#: includes/class-pricing-table.php:323
 msgid "%s+ pizzas"
 msgstr ""
 
-#: includes/class-pricing-table.php:353
+#: includes/class-pricing-table.php:326
 msgid "From %1$s to %2$s"
 msgstr ""
 
-#: includes/class-pricing-table.php:354
+#: includes/class-pricing-table.php:327
 msgid "from %1$s to %2$s pizzas"
 msgstr ""
 
