@@ -202,6 +202,38 @@ class WC_Dynamic_Pricing_Table_Renderer {
 	}
 
 	/**
+	 * Get maximum order quantity from WooCommerce Min Max Quantities plugin
+	 *
+	 * @param WC_Product $product
+	 * @return int Maximum order quantity (0 if not set or plugin not active)
+	 */
+	private function get_product_max_quantity( $product ) {
+		// Check if WC Min Max Quantities plugin is active and class exists
+		if ( class_exists( 'WC_Min_Max_Quantities_Quantity_Rules' ) ) {
+			try {
+				$rules = new WC_Min_Max_Quantities_Quantity_Rules( $product );
+				$all_rules = $rules->get();
+				$max_quantity = isset( $all_rules[ WC_Min_Max_Quantities_Quantity_Rules::MAXIMUM ] )
+					? absint( $all_rules[ WC_Min_Max_Quantities_Quantity_Rules::MAXIMUM ] )
+					: 0;
+				return $max_quantity;
+			} catch ( Exception $e ) {
+				// Fallback to post meta if class method fails
+			}
+		}
+
+		// Fallback: try to get from post meta directly
+		$max_quantity = absint( $product->get_meta( 'maximum_allowed_quantity', true ) );
+
+		// If still 0, check for variation-specific meta
+		if ( 0 === $max_quantity && $product->is_type( 'variation' ) ) {
+			$max_quantity = absint( $product->get_meta( 'variation_maximum_allowed_quantity', true ) );
+		}
+
+		return $max_quantity;
+	}
+
+	/**
 	 * Render the pricing table HTML
 	 *
 	 * @param array $pricing_rule_set
@@ -256,8 +288,11 @@ class WC_Dynamic_Pricing_Table_Renderer {
 		$from_pizzas = $from * $pieces_per_carton;
 		$to_pizzas = $to ? $to * $pieces_per_carton : null;
 
+		// Get max order quantity from Min Max Quantities plugin
+		$max_order = $this->get_product_max_quantity( $product );
+
 		// Format quantity display
-		$quantity_text = $this->format_quantity_text( $from, $to, $from_pizzas, $to_pizzas );
+		$quantity_text = $this->format_quantity_text( $from, $to, $from_pizzas, $to_pizzas, $max_order );
 
 		// Calculate discount and price
 		$discount_text = '';
@@ -307,9 +342,10 @@ class WC_Dynamic_Pricing_Table_Renderer {
 	 * @param int|null $to
 	 * @param int $from_pizzas
 	 * @param int|null $to_pizzas
+	 * @param int $max_order Maximum order quantity from product
 	 * @return array
 	 */
-	private function format_quantity_text( $from, $to, $from_pizzas, $to_pizzas ) {
+	private function format_quantity_text( $from, $to, $from_pizzas, $to_pizzas, $max_order = -1 ) {
 		$cartons_text = '';
 		$pizzas_text = '';
 
@@ -317,10 +353,10 @@ class WC_Dynamic_Pricing_Table_Renderer {
 			// Single quantity
 			$cartons_text = sprintf( _n( '%s carton', '%s cartons', $from, 'wc-dynamic-pricing-table' ), $from );
 			$pizzas_text = sprintf( _n( '%s pizza', '%s pizzas', $from_pizzas, 'wc-dynamic-pricing-table' ), number_format( $from_pizzas, 0, ',', '.' ) );
-		} elseif ( $to > 1000000 ) {
-			// Unlimited (more than)
-			$cartons_text = sprintf( __( '%s+ cartons', 'wc-dynamic-pricing-table' ), $from );
-			$pizzas_text = sprintf( __( '%s+ pizzas', 'wc-dynamic-pricing-table' ), number_format( $from_pizzas, 0, ',', '.' ) );
+		} elseif ( ( $max_order > 0 && $to >= $max_order ) || $to > 1000000 ) {
+			// Last tier: max order reached or unlimited (more than)
+			$cartons_text = sprintf( __( 'From %s+', 'wc-dynamic-pricing-table' ), $from );
+			$pizzas_text = sprintf( __( 'from %s+ pizzas', 'wc-dynamic-pricing-table' ), number_format( $from_pizzas, 0, ',', '.' ) );
 		} else {
 			// Range
 			$cartons_text = sprintf( __( 'From %1$s to %2$s', 'wc-dynamic-pricing-table' ), $from, $to );
